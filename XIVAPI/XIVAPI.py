@@ -1,14 +1,14 @@
 import http.client
 
-conn = http.client.HTTPSConnection("v2.xivapi.com")
+def search_API(sheet):
+    conn = http.client.HTTPSConnection("v2.xivapi.com")
 
-conn.request("GET", "/api/asset?path=ui%2Ficon%2F051000%2F051474_hr1.tex&format=png")
+    conn.request("GET", f"/api/sheet{sheet}")
 
-res = conn.getresponse()
-data = res.read()
+    res = conn.getresponse()
+    data = res.read()
 
-file_dir = "image/test.png"
+    print(data.decode("utf-8"))
 
-with open(file_dir, "wb") as fp:
-    fp.write(data)
-print("Image downloaded successfully.")
+
+search_API("/Item/3")
